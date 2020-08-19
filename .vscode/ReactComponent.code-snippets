@@ -25,7 +25,7 @@
 			"$0",
 			"}",
 			"",
-			"export default ${1:ComponentName}"
+			"export default ${1:ComponentName};"
 		],
 		"description": "Creates a functional component"
 	},
@@ -42,7 +42,7 @@
 			"\t}",
 			"}",
 			"",
-			"export default ${1:ComponentName}"
+			"export default ${1:ComponentName};"
 		],
 		"description": "Creates a class component"
 	},
