@@ -4,13 +4,13 @@ import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
 
 const Burger = (props) => {
 
-    let transformedIngredients = Object.keys(props.ingredients).map((ingredient) => {
-        return [...Array(props.ingredients[ingredient])].map((_, i) => {
-            return <BurgerIngredient key={ingredient + i} type={ingredient} />
-        });
-    }).reduce((arr, el) => {
-        return arr.concat(el);
-    }, []);
+    //my code
+    let transformedIngredients = [];
+    for(let key in props.ingredients){
+        for(let i = 0; i < props.ingredients[key]; ++i){
+            transformedIngredients.push(<BurgerIngredient key={key + i} type={key} />)
+        }
+    }
 
     if(transformedIngredients.length === 0){
         transformedIngredients = <p>Please start adding ingredients</p>;

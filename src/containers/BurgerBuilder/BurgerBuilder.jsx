@@ -21,18 +21,7 @@ class BurgerBuilder extends Component{
             meat: 0
         },
         totalPrice: 0,
-    }
-
-    updatePurchaseState(ingredients){
-        let purchasable = false;
-        for(let key in ingredients){
-            if(ingredients[key] > 0){
-                purchasable = true;
-                break;
-            }
-        }
-
-        //update state here
+        purchasing: false,
     }
 
     addIngredientHandler(type) {
@@ -49,6 +38,18 @@ class BurgerBuilder extends Component{
         const newPrice = oldPrice + priceAddition;
 
         this.setState({totalPrice: newPrice, ingredients: updatedIngredients});
+    }
+
+    purchasingHandler(){
+        this.setState({purchasing: true});
+    }
+
+    resetModal(){
+        this.setState({purchasing: false});
+    }
+
+    purchaseContinueHandler(){
+        alert("You have continued!");
     }
 
     removeIngredientHandler(type) {
@@ -81,11 +82,14 @@ class BurgerBuilder extends Component{
 
         return (
             <React.Fragment>
-                <Modal>
-                    <OrderSummary ingredients={this.state.ingredients} price={this.state.totalPrice}/>
+                <Modal show={this.state.purchasing} reset={this.resetModal.bind(this)}>
+                    <OrderSummary ingredients={this.state.ingredients} price={this.state.totalPrice}
+                    resetModal={this.resetModal.bind(this)}
+                    continue={this.purchaseContinueHandler.bind(this)}
+                    />
                 </Modal>
                 <Burger ingredients={this.state.ingredients}/>
-                <BuildControls addHandler={this.addIngredientHandler.bind(this)} removeHandler={this.removeIngredientHandler.bind(this)} disabled={disabledInfo} purchasable={this.state.totalPrice > 0} price={this.state.totalPrice}
+                <BuildControls addHandler={this.addIngredientHandler.bind(this)} removeHandler={this.removeIngredientHandler.bind(this)} disabled={disabledInfo} purchasable={this.state.totalPrice > 0} price={this.state.totalPrice} click={this.purchasingHandler.bind(this)} 
                 />
             </React.Fragment>
         );
