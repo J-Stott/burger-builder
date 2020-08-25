@@ -22,7 +22,7 @@
 			"import React from \"react\";",
 			"",
 			"const ${1:ComponentName} = (props) => {",
-			"$0",
+			"\t$0",
 			"}",
 			"",
 			"export default ${1:ComponentName};"
@@ -43,6 +43,14 @@
 			"}",
 			"",
 			"export default ${1:ComponentName};"
+		],
+		"description": "Creates a class component"
+	},
+
+	"import css": {
+		"prefix": "impcss",
+		"body": [
+			"import classes from \"./${1:ComponentName}.module.css\";"
 		],
 		"description": "Creates a class component"
 	},
